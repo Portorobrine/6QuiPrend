@@ -28,7 +28,8 @@ def distribution(nbplayer):
 
     return player
 
-def table():
+#initialisation de la table de jeux
+def initTable():
     table = 4*[None]
     for jeuxmep in range(len(table)):
         table[jeuxmep]=6*[None]
@@ -57,6 +58,20 @@ def demandeDepoDeCarte(qui, dataP):
     return quellecarte
 
 
+def recherchePlaceTable(dataDeLaGame):
+    memB = 105
+    for long in range(len(dataDeLaGame)):
+        memA = int(dataDeLaGame[long])
+        if memA == 0:
+            return
+        elif memA > memB:
+            memB = memA
+
+
+    return memB
+
+
+
 
 
 
@@ -64,7 +79,7 @@ def demandeDepoDeCarte(qui, dataP):
 def loop(nbjoueur ):
 
     dataPlayers = distribution(nbjoueur)
-    game = table()
+    game = initTable()
     tourDepoCarte = 0
     carteSelectione = [0]*nbjoueur
     for tourDepoCarte in range(0, nbjoueur):
@@ -76,10 +91,13 @@ def loop(nbjoueur ):
         carteSelectione[tourDepoCarte] = temp
         dataPlayers[tourDepoCarte][thecarte] = None
 
-        
-        print(dataPlayers)
-        print()
-        print(game)
+
+    print(recherchePlaceTable(carteSelectione))
+
+
+    #print(dataPlayers)
+    print()
+    #print(game)
 
 
 
@@ -93,4 +111,4 @@ def loop(nbjoueur ):
 
 
 
-loop(2)
+loop(5)
